@@ -13,6 +13,36 @@
 ## Objetivo do Sistema
 O sistema tem como objetivo facilitar a decisão em grupo sobre o que comer, tornando o processo mais rápido e menos indeciso. Através da criação de salas compartilháveis, os usuários podem sugerir opções de comidas, restaurantes ou sabores e participar de uma votação coletiva. A plataforma permite visualizar preferências do grupo em tempo real, considerando também possíveis restrições alimentares. Além disso, oferece mecanismos como tempo limite e escolha automática para evitar indecisões prolongadas. O foco é proporcionar uma experiência simples, colaborativa e eficiente para decidir refeições em grupo.
 
+## Tecnologias
+<table style="border: none;">
+    <tr>
+        <td align="center">
+            <h3>Backend</h3>
+            <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="python" height="40"/> </a> <br>
+            <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://static.djangoproject.com/img/logos/django-logo-negative.svg" alt="django" height="40"/> </a> <br>
+            <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://www.django-rest-framework.org/img/logo-dark.png#only-dark" alt="django" height="40"/> </a> <br>
+        </td>
+        <td align="center">
+            <h3>Frontend</h3>
+            <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" height="40"/> </a>
+            <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" height="40"/> </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" height="40"/> </a> <br>
+            <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://react.dev/images/brand/wordmark_dark.svg" alt="react" height="40"/> </a> <br>
+            <a href="https://mui.com" target="_blank" rel="noreferrer"> <img src="https://cdn.cloudinary.com/stichting-frontend-amsterdam/image/upload/v1724858269/mui-logo-dark-text_qi0eho.png" alt="react" height="40"/> </a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <h3>Database</h3>
+            <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://brasilcloud.com.br/wp-content/uploads/2018/09/postgresql-logo1.png" alt="postgresql" height="40"/> </a>
+        </td>
+        <td align="center">
+            <h3>DevOps</h3>
+            <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img   src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/3840px-Git-logo.svg.png" alt="git" height="40"/> </a>
+        </td>
+    </tr>
+</table>
+
 ## Histórias de Usuário
 
 ### 1. Criação e acesso à sala
