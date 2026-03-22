@@ -1,4 +1,15 @@
 # weChoose
+
+## Roles
+- Bárbara Diniz Abreu
+    - Backend
+- João Pedro Figueiredo Bicalho
+    - Frontend
+- Júlia Souza Moura
+    - Frontend
+- Pedro Henrique Gonçalves Pires
+    - Backend
+
 ## Histórias de Usuário
 
 ### 1. Criação e acesso à sala
