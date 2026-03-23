@@ -1,20 +1,22 @@
-# weChoose
+# RU Pay
 
 ## Roles
+
 - Bárbara Diniz Abreu
-    - Backend
+  - Backend
 - João Pedro Figueiredo Bicalho
-    - Frontend
+  - Frontend
 - Júlia Souza Moura
-    - Frontend
+  - Frontend
 - Pedro Henrique Gonçalves Pires
-    - Backend
+  - Backend
 
 ## Objetivo do Sistema
 
 O sistema tem como objetivo gerenciar o saldo digital do restaurante universitário, permitindo que usuários recarreguem sua carteirinha presencialmente ou pelo site. Ao acessar o restaurante, basta utilizar a carteirinha na catraca para liberação rápida da entrada. A plataforma busca reduzir filas, otimizar o fluxo de atendimento e oferecer mais praticidade no pagamento das refeições. Além disso, possibilita o acompanhamento do saldo e histórico de recargas de forma simples e acessível.
 
 ## Tecnologias
+
 <table style="border: none;">
     <tr>
         <td align="center">
