@@ -19,25 +19,33 @@ O sistema tem como objetivo gerenciar o saldo digital do restaurante universitá
 
 <table style="border: none;">
     <tr>
+        <td align="center" colspan="2">
+            <h3>Agents</h3>
+            <a href="https://github.com/features/copilot" target="_blank" rel="noreferrer"> <img src="https://ai.nd.edu/assets/607853/300x/github_copilot_logo_4x.png" alt="copilot" height="40"/> </a>
+            <a href="https://openai.com/codex/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/codex-text.png" alt="codex" height="40"/> </a>
+            <a href="https://claude.ai/login" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Claude_AI_logo.svg/960px-Claude_AI_logo.svg.png" alt="codex" height="40"/> </a>
+        </td>
+    </tr>
+    <tr>
         <td align="center">
             <h3>Backend</h3>
-            <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="python" height="40"/> </a> <br>
-            <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://static.djangoproject.com/img/logos/django-logo-negative.svg" alt="django" height="40"/> </a> <br>
-            <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://www.django-rest-framework.org/img/logo-dark.png#only-dark" alt="django" height="40"/> </a> <br>
+            <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="python" height="40"/> </a>
+            <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://static.djangoproject.com/img/logos/django-logo-negative.svg" alt="django" height="40"/> </a>
+            <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://www.django-rest-framework.org/img/logo-dark.png#only-dark" alt="djangorest" height="40"/> </a>
         </td>
         <td align="center">
             <h3>Frontend</h3>
             <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" height="40"/> </a>
             <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" height="40"/> </a>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" height="40"/> </a> <br>
-            <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://react.dev/images/brand/wordmark_dark.svg" alt="react" height="40"/> </a> <br>
-            <a href="https://mui.com" target="_blank" rel="noreferrer"> <img src="https://cdn.cloudinary.com/stichting-frontend-amsterdam/image/upload/v1724858269/mui-logo-dark-text_qi0eho.png" alt="react" height="40"/> </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" height="40"/> </a>
+            <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://react.dev/images/brand/wordmark_dark.svg" alt="react" height="40"/> </a>
+            <a href="https://mui.com" target="_blank" rel="noreferrer"> <img src="https://cdn.cloudinary.com/stichting-frontend-amsterdam/image/upload/v1724858269/mui-logo-dark-text_qi0eho.png" alt="mui" height="40"/> </a>
         </td>
     </tr>
     <tr>
         <td align="center">
             <h3>Database</h3>
-            <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://brasilcloud.com.br/wp-content/uploads/2018/09/postgresql-logo1.png" alt="postgresql" height="40"/> </a>
+            <a href="https://sqlite.org" target="_blank" rel="noreferrer"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SQLite370.svg/1280px-SQLite370.svg.png" alt="sqlite" height="40"/> </a>
         </td>
         <td align="center">
             <h3>DevOps</h3>
