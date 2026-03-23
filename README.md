@@ -46,56 +46,72 @@ O sistema tem como objetivo gerenciar o saldo digital do restaurante universitá
 
 ## Histórias de Usuário
 
-### 1. Criação e acesso à sala
-**Como** usuário  
-**Quero** criar uma sala de decisão e compartilhar um link de acesso  
-**Para** que outras pessoas possam entrar facilmente e participar da escolha  
+### 1. Recarga online
+
+**Como** aluno
+**Quero** recarregar o saldo da minha carteirinha pelo site
+**Para** evitar filas e garantir crédito antes de chegar ao restaurante
 
 ---
 
-### 2. Participação na sala
-**Como** participante  
-**Quero** entrar em uma sala por meio de um link e visualizar quem está participando  
-**Para** acompanhar o grupo envolvido na decisão  
+### 2. Recarga presencial
+
+**Como** aluno
+**Quero** recarregar minha carteirinha no local de atendimento
+**Para** conseguir adicionar saldo mesmo sem acesso ao site
 
 ---
 
-### 3. Adição e visualização de opções
-**Como** participante  
-**Quero** adicionar opções e visualizar todas as sugestões disponíveis  
-**Para** que o grupo tenha alternativas claras antes de votar  
+### 3. Consulta de salso
+
+**Como** aluno
+**Quero** consultar meu saldo disponível
+**Para** saber se tenho crédito suficiente para realizar uma refeição
 
 ---
 
-### 4. Sistema de votação
-**Como** participante  
-**Quero** votar nas opções e poder alterar meu voto antes do encerramento  
-**Para** refletir corretamente minha preferência  
+### 4. Histórico de transações
+
+**Como** aluno
+**Quero** visualizar o histórico de recargas e utilizações
+**Para** acompanhar meus gastos no restaurante
 
 ---
 
-### 5. Acompanhamento da votação
-**Como** usuário  
-**Quero** ver quantas pessoas já votaram e acompanhar o progresso da votação em tempo real  
-**Para** entender o andamento da decisão  
+### 5. Validação na catraca
+
+**Como** aluno
+**Quero** passar minha carteirinha na catraca e ter o acesso liberado automaticamente
+**Para** entrar rapidamente no restaurante sem precisar realizar pagamentos na hora
 
 ---
 
-### 6. Controle de tempo
-**Como** criador da sala  
-**Quero** definir um tempo limite para votação e disponibilizar um contador regressivo  
-**Para** evitar demora na decisão  
+### 6. Leitura da carteirinha
+
+**Como** operador de caixa
+**Quero** ler a carteirinha do aluno no sistema
+**Para** identificar o usuário e acessar suas informações de saldo
 
 ---
 
-### 7. Resultado automático
-**Como** participante  
-**Quero** ver a opção vencedora ao final da votação, sendo escolhida automaticamente com base nos votos  
-**Para** concluir a decisão do grupo  
+### 7. Processamento de recarga
+
+**Como** operador de caixa
+**Quero** registrar recargas presenciais no sistema
+**Para** atualizar imediatamente o saldo do aluno
 
 ---
 
-### 8. Funcionalidades extras
-**Como** usuário  
-**Quero** acessar modos alternativos de decisão (como escolha aleatória ou decisão automática), visualizar decisões anteriores e considerar restrições (ex: alimentares)  
-**Para** tornar o processo mais rápido e personalizado  
+### 8. Confirmação de identidade
+
+**Como** operador de caixa
+**Quero** visualizar a foto do aluno ao passar a carteirinha
+**Para** validar que a pessoa utilizando o cartão é o próprio titular e garantir a segurança do acesso
+
+---
+
+### 9. Controle de acesso
+
+**Como** sistema
+**Quero** validar automaticamente se o aluno possui saldo suficiente ao passar na catraca
+**Para** liberar ou bloquear o acesso de forma rápida e sem intervenção manual
