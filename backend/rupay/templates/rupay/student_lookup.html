@@ -28,6 +28,7 @@
   <div class="actions-row">
     <a class="btn" href="{% url 'rupay:student_recharge_online' %}?card_number={{ user_obj.card_number|urlencode }}">Recarga online</a>
     <a class="btn btn-secondary" href="{% url 'rupay:student_history' %}?card_number={{ user_obj.card_number|urlencode }}">Ver extrato</a>
+    <a class="btn btn-secondary" href="{% url 'rupay:receipt_history' %}?card_number={{ user_obj.card_number|urlencode }}">Meus comprovantes</a>
   </div>
 {% endif %}
 

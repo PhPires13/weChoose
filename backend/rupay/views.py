@@ -11,8 +11,40 @@ from .forms import (
     TurnstileForm,
     UserRegistrationForm,
 )
-from .models import Operator, Transaction, User
+from .models import Operator, Transaction, User  # type: ignore
 from .utils import meal_price, user_balance
+
+
+def receipt(request, transaction_id):
+    transaction = get_object_or_404(Transaction, id=transaction_id)  # type: ignore
+    return render(
+        request,
+        'rupay/receipt.html',
+        {
+            'transaction': transaction,
+            'user': transaction.user,
+            'balance': user_balance(transaction.user),
+        },
+    )
+
+
+def receipt_history(request):
+    card_number = request.GET.get('card_number', '').strip()
+    if not card_number:
+        messages.info(request, 'Informe o número da carteirinha para ver os comprovantes.')
+        return redirect('rupay:student_lookup')
+
+    u = get_object_or_404(User, card_number=card_number)  # type: ignore
+    receipts = u.transactions.filter(type=Transaction.TransactionType.MEAL).order_by('-created_at')  # type: ignore
+    return render(
+        request,
+        'rupay/receipt_history.html',
+        {
+            'user_obj': u,
+            'receipts': receipts,
+            'balance': user_balance(u),
+        },
+    )
 
 
 def home(request):
@@ -42,17 +74,17 @@ def student_lookup(request):
         if form.is_valid():
             card_number = form.cleaned_data['card_number']
             try:
-                user_obj = User.objects.get(card_number=card_number)
+                user_obj = User.objects.get(card_number=card_number)  # type: ignore
                 balance = user_balance(user_obj)
-            except User.DoesNotExist:
+            except User.DoesNotExist:  # type: ignore
                 messages.error(request, 'Carteirinha não encontrada. Verifique o número ou cadastre-se.')
     else:
         form = CardNumberForm(initial={'card_number': card_number} if card_number else None)
         if card_number:
             try:
-                user_obj = User.objects.get(card_number=card_number)
+                user_obj = User.objects.get(card_number=card_number)  # type: ignore
                 balance = user_balance(user_obj)
-            except User.DoesNotExist:
+            except User.DoesNotExist:  # type: ignore
                 messages.warning(request, 'Carteirinha não encontrada.')
 
     return render(
@@ -74,11 +106,11 @@ def student_recharge_online(request):
         if form.is_valid():
             card = form.cleaned_data['card_number']
             try:
-                u = User.objects.get(card_number=card)
-            except User.DoesNotExist:
+                u = User.objects.get(card_number=card)  # type: ignore
+            except User.DoesNotExist:  # type: ignore
                 messages.error(request, 'Carteirinha não encontrada.')
             else:
-                Transaction.objects.create(
+                Transaction.objects.create(  # type: ignore
                     user=u,
                     type=Transaction.TransactionType.RECHARGE,
                     amount=form.cleaned_data['amount'],
@@ -129,10 +161,10 @@ def operator_panel(request):
         if lookup_form.is_valid():
             cn = lookup_form.cleaned_data['card_number']
             try:
-                user_obj = User.objects.get(card_number=cn)
+                user_obj = User.objects.get(card_number=cn)  # type: ignore
                 balance = user_balance(user_obj)
                 recharge_form = OperatorRechargeForm()
-            except User.DoesNotExist:
+            except User.DoesNotExist:  # type: ignore
                 messages.error(request, 'Carteirinha não encontrada.')
     elif request.method == 'POST' and 'recharge' in request.POST:
         cn = request.POST.get('card_number', '').strip()
@@ -144,7 +176,7 @@ def operator_panel(request):
             op = recharge_form.cleaned_data['operator']
             method = recharge_form.cleaned_data['method']
             amount = recharge_form.cleaned_data['amount']
-            Transaction.objects.create(
+            Transaction.objects.create(  # type: ignore
                 user=user_obj,
                 type=Transaction.TransactionType.RECHARGE,
                 amount=amount,
@@ -158,11 +190,11 @@ def operator_panel(request):
         cn = request.GET.get('card_number', '').strip()
         if cn:
             try:
-                user_obj = User.objects.get(card_number=cn)
+                user_obj = User.objects.get(card_number=cn)  # type: ignore
                 balance = user_balance(user_obj)
                 recharge_form = OperatorRechargeForm()
                 lookup_form = CardNumberForm(prefix='lookup', initial={'card_number': cn})
-            except User.DoesNotExist:
+            except User.DoesNotExist:  # type: ignore
                 messages.warning(request, 'Carteirinha não encontrada.')
 
     return render(
@@ -173,7 +205,7 @@ def operator_panel(request):
             'user_obj': user_obj,
             'balance': balance,
             'recharge_form': recharge_form,
-            'operators_exist': Operator.objects.exists(),
+            'operators_exist': Operator.objects.exists(),  # type: ignore
         },
     )
 
@@ -186,25 +218,20 @@ def turnstile(request):
         if form.is_valid():
             cn = form.cleaned_data['card_number']
             try:
-                with db_transaction.atomic():
-                    u = User.objects.select_for_update().get(card_number=cn)
+                with db_transaction.atomic():  # type: ignore
+                    u = User.objects.select_for_update().get(card_number=cn)  # type: ignore
                     bal = user_balance(u)
                     price = meal_price()
                     if bal < price:
                         result = {'allowed': False, 'user': u, 'balance': bal, 'price': price}
                     else:
-                        Transaction.objects.create(
+                        transaction = Transaction.objects.create(  # type: ignore
                             user=u,
                             type=Transaction.TransactionType.MEAL,
                             amount=price,
                         )
-                        result = {
-                            'allowed': True,
-                            'user': u,
-                            'balance': user_balance(u),
-                            'price': price,
-                        }
-            except User.DoesNotExist:
+                        return redirect('rupay:receipt', transaction_id=transaction.id)
+            except User.DoesNotExist:  # type: ignore
                 messages.error(request, 'Carteirinha não cadastrada.')
                 form = TurnstileForm(request.POST)
     else:
