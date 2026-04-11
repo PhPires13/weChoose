@@ -14,16 +14,6 @@ class User(models.Model):
         return self.name
 
 
-class Operator(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    username = models.CharField(max_length=50, unique=True)
-    name = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Transaction(models.Model):
 
     class TransactionType(models.TextChoices):
@@ -45,14 +35,6 @@ class Transaction(models.Model):
         choices=MethodType.choices,
         blank=True,
         null=True
-    )
-
-    operator = models.ForeignKey(
-        Operator,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='transactions'
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

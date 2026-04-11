@@ -3,7 +3,7 @@ from decimal import Decimal
 from django import forms
 from django.core.validators import RegexValidator
 
-from .models import Operator, Transaction, User
+from .models import Transaction, User
 
 CARD_NUMBER_VALIDATOR = RegexValidator(
     regex=r'^\d{10}$',
@@ -63,11 +63,6 @@ class OperatorRechargeForm(forms.Form):
         label='Forma de pagamento',
         choices=Transaction.MethodType.choices,
         initial=Transaction.MethodType.CASH,
-    )
-    operator = forms.ModelChoiceField(
-        label='Operador',
-        queryset=Operator.objects.all().order_by('name'),
-        empty_label='Selecione…',
     )
 
 

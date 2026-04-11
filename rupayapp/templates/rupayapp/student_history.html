@@ -38,7 +38,6 @@
           <td class="muted">
             {% if tx.type == "RECHARGE" %}
               {{ tx.get_recharge_method_display }}
-              {% if tx.operator %}· {{ tx.operator.name }}{% endif %}
             {% elif tx.type == "MEAL" %}
               <a href="{% url 'rupayapp:receipt' transaction_id=tx.id %}">Ver comprovante</a>
             {% else %}

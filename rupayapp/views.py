@@ -11,7 +11,7 @@ from .forms import (
     TurnstileForm,
     UserRegistrationForm,
 )
-from .models import Operator, Transaction, User  # type: ignore
+from .models import Transaction, User  # type: ignore
 from .utils import meal_price, user_balance
 
 
@@ -137,7 +137,7 @@ def student_history(request):
         return redirect('rupayapp:student_lookup')
 
     u = get_object_or_404(User, card_number=card_number)
-    txs = u.transactions.select_related('operator').order_by('-created_at')
+    txs = u.transactions.order_by('-created_at')
     return render(
         request,
         'rupayapp/student_history.html',
@@ -173,7 +173,6 @@ def operator_panel(request):
         recharge_form = OperatorRechargeForm(request.POST)
         lookup_form = CardNumberForm(prefix='lookup', initial={'card_number': cn})
         if recharge_form.is_valid():
-            op = recharge_form.cleaned_data['operator']
             method = recharge_form.cleaned_data['method']
             amount = recharge_form.cleaned_data['amount']
             Transaction.objects.create(  # type: ignore
@@ -181,7 +180,6 @@ def operator_panel(request):
                 type=Transaction.TransactionType.RECHARGE,
                 amount=amount,
                 recharge_method=method,
-                operator=op,
             )
             messages.success(request, f'Recarga de R$ {amount} registrada para {user_obj.name}.')
             balance = user_balance(user_obj)
@@ -205,7 +203,6 @@ def operator_panel(request):
             'user_obj': user_obj,
             'balance': balance,
             'recharge_form': recharge_form,
-            'operators_exist': Operator.objects.exists(),  # type: ignore
         },
     )
 
