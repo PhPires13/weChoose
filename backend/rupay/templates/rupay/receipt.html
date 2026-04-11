@@ -1,0 +1,37 @@
+{% extends "rupay/base.html" %}
+
+{% block title %}Comprovante de Pagamento — RU Pay{% endblock %}
+
+{% block content %}
+<div class="receipt-container" style="max-width: 600px; margin: 0 auto; padding: 2rem; border: 1px solid #ccc; background: #fff;">
+    <h1 style="text-align: center; margin-bottom: 2rem;">Comprovante de Pagamento</h1>
+    
+    <div class="receipt-header" style="border-bottom: 1px solid #ccc; padding-bottom: 1rem; margin-bottom: 1rem;">
+        <h2>RU Pay - Sistema de Pagamento</h2>
+        <p>Data/Hora: {{ transaction.created_at|date:"d/m/Y H:i:s" }}</p>
+    </div>
+    
+    <div class="receipt-details">
+        <p><strong>Nome do Estudante:</strong> {{ user.name }}</p>
+        <p><strong>Número da Carteirinha:</strong> {{ user.card_number }}</p>
+        <p><strong>Tipo de Transação:</strong> Refeição</p>
+        <p><strong>Valor Debitado:</strong> R$ {{ transaction.amount }}</p>
+        <p><strong>Saldo Atual:</strong> R$ {{ balance }}</p>
+        <p><strong>ID da Transação:</strong> {{ transaction.id }}</p>
+    </div>
+    
+    <div class="receipt-footer" style="border-top: 1px solid #ccc; padding-top: 1rem; margin-top: 2rem; text-align: center;">
+        <p>Obrigado pela sua visita ao RU!</p>
+        <button onclick="window.print()" class="btn" style="margin-top: 1rem;">Imprimir Comprovante</button>
+        <br>
+        <a href="{% url 'rupay:turnstile' %}" class="btn" style="margin-top: 1rem;">Voltar à Catraca</a>
+    </div>
+</div>
+
+<style>
+@media print {
+    .btn { display: none; }
+    body { font-size: 12pt; }
+}
+</style>
+{% endblock %}

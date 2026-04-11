@@ -21,4 +21,3 @@ urlpatterns = [
     path('turnstile/validate/', TurnstileValidationView.as_view(), name='turnstile-validate'),
     path('cards/<str:card_number>/', CardLookupView.as_view(), name='card-lookup'),
 ]
-
