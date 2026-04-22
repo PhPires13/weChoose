@@ -86,7 +86,7 @@ class OperatorRechargeForm(forms.Form):
 class TurnstileForm(forms.Form):
     card_number = forms.CharField(
         label='Número da carteirinha',
-        max_length=8,
+        max_length=10,
         validators=[CARD_NUMBER_VALIDATOR],
-        widget=forms.TextInput(attrs={'autocomplete': 'off', 'placeholder': '12345678'}),
+        widget=forms.TextInput(attrs={'autocomplete': 'off', 'placeholder': '1234567890'}),
     )
