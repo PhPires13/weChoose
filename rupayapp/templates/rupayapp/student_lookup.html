@@ -38,8 +38,9 @@
     <button class="btn" type="submit">Entrar</button>
   </form>
 {% endif %}
-
+{% if not user_obj %}
 <p class="muted" style="margin-top:1.5rem;">
   Primeiro acesso? <a href="{% url 'rupayapp:student_register' %}">Cadastre-se</a>
 </p>
+{% endif %}
 {% endblock %}
