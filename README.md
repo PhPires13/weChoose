@@ -52,6 +52,56 @@ O sistema tem como objetivo gerenciar o saldo digital do restaurante universitá
     </tr>
 </table>
 
+## Requerimentos
+
+### Requerimentos técnicos
+
+- Python 3.10+ instalado
+- pip atualizado
+- Ambiente virtual (recomendado)
+
+Dependências Python do projeto (arquivo `requirements.txt`):
+
+- Django==6.0.4
+- django-extensions==4.1
+- pillow==12.2.0
+
+### Requerimentos funcionais
+
+Os requerimentos funcionais resumidos também estão no arquivo `requisitos.txt`.
+
+## Como rodar o código
+
+1. Clone o repositório e entre na pasta do projeto.
+2. Crie e ative um ambiente virtual.
+3. Instale as dependências.
+4. Rode as migrações.
+5. Inicie o servidor Django.
+
+### Linux/macOS
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+### Windows (PowerShell)
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+Após iniciar, acesse: `http://127.0.0.1:8000/`
+
 ## Histórias de Usuário
 
 ### 1. Recarga online
