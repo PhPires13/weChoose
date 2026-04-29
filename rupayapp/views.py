@@ -284,37 +284,64 @@ def operator_panel(request):
 
 @require_http_methods(['GET', 'POST'])
 def turnstile(request):
+    user_obj = None
     result = None
+    balance = None
+
     if request.method == 'POST':
-        form = TurnstileForm(request.POST)
-        if form.is_valid():
-            cn = form.cleaned_data['card_number']
+        # ETAPA 1: Buscar usuário
+        if 'lookup' in request.POST:
+            form = TurnstileForm(request.POST)
+            if form.is_valid():
+                cn = form.cleaned_data['card_number']
+                try:
+                    user_obj = User.objects.get(card_number=cn)
+                    balance = user_balance(user_obj)
+                except User.DoesNotExist:
+                    messages.error(request, 'Carteirinha não cadastrada.')
+
+        # ETAPA 2: Confirmar entrada
+        elif 'confirm' in request.POST:
+            cn = request.POST.get('card_number')
             try:
-                with db_transaction.atomic():  # type: ignore
-                    u = User.objects.select_for_update().get(card_number=cn)  # type: ignore
-                    bal = user_balance(u)
+                with db_transaction.atomic():
+                    user_obj = User.objects.select_for_update().get(card_number=cn)
+                    balance = user_balance(user_obj)
+                    bal = balance
                     price = meal_price()
+
                     if bal < price:
-                        result = {'allowed': False, 'user': u, 'balance': bal, 'price': price}
+                        result = {
+                            'allowed': False,
+                            'user': user_obj,
+                            'balance': bal,
+                            'price': price
+                        }
                     else:
-                        transaction = Transaction.objects.create(  # type: ignore
-                            user=u,
+                        transaction = Transaction.objects.create(
+                            user=user_obj,
                             type=Transaction.TransactionType.MEAL,
                             amount=price,
                         )
-                        return redirect('rupayapp:receipt', transaction_id=transaction.id)
-            except User.DoesNotExist:  # type: ignore
+                        result = {
+                            'allowed': True,
+                            'user': user_obj,
+                            'balance': user_balance(user_obj)
+                        }
+
+            except User.DoesNotExist:
                 messages.error(request, 'Carteirinha não cadastrada.')
-                form = TurnstileForm(request.POST)
+
     else:
         form = TurnstileForm()
 
-    return render(
-        request,
-        'rupayapp/turnstile.html',
-        {
-            'form': form,
-            'result': result,
-            'meal_price': meal_price(),
-        },
-    )
+    if 'form' not in locals():
+        form = TurnstileForm()
+
+    return render(request, 'rupayapp/turnstile.html', {
+        'form': form,
+        'user_obj': user_obj,
+        'result': result,
+        'meal_price': meal_price(),
+        'balance': balance,
+    })

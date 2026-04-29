@@ -4,8 +4,9 @@
 
 {% block content %}
 <h1 class="page-title">Simulação da catraca</h1>
-<p class="lead">Debita automaticamente R$ {{ meal_price }} em uma refeição se o saldo for suficiente.</p>
+<p class="lead">Validação com foto antes da liberação.</p>
 
+<!-- ETAPA 1: Buscar -->
 <form class="form-panel" method="post" novalidate>
   {% csrf_token %}
   {% for field in form %}
@@ -15,22 +16,48 @@
       {{ field.errors }}
     </div>
   {% endfor %}
-  <button class="btn" type="submit">Liberar entrada</button>
+  <button class="btn" type="submit" name="lookup">Buscar carteirinha</button>
 </form>
 
+<!-- ETAPA 2: Mostrar dados + confirmação -->
+{% if user_obj %}
+  <div class="balance-box" style="margin-top:1.5rem;">
+    <p><strong>{{ user_obj.name }}</strong></p>
+
+    {% if user_obj.photo %}
+      <p class="muted" style="color:#b45309;">
+        Confirme se a foto corresponde ao aluno
+      </p>
+      <img src="{{ user_obj.photo.url }}" width="150" style="border-radius:8px;">
+    {% else %}
+      <p class="muted">Aluno sem foto cadastrada</p>
+    {% endif %}
+
+    <p style="margin-top:0.75rem;">
+      Saldo atual: R$ {{ balance }} <br>
+    </p>
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="card_number" value="{{ user_obj.card_number }}">
+      <button class="btn" type="submit" name="confirm">Confirmar entrada</button>
+    </form>
+  </div>
+{% endif %}
+
+<!-- RESULTADO FINAL -->
 {% if result %}
   {% if result.allowed %}
     <div class="result-ok">
       <strong>Acesso liberado</strong>
-      <p class="muted" style="margin:0.5rem 0 0;">{{ result.user.name }} — saldo após débito: R$ {{ result.balance }}</p>
+      <p>{{ result.user.name }} — saldo após débito: R$ {{ result.balance }}</p>
     </div>
   {% else %}
     <div class="result-deny">
       <strong>Acesso negado</strong>
-      <p class="muted" style="margin:0.5rem 0 0;">
-        {{ result.user.name }} — saldo R$ {{ result.balance }}; necessário R$ {{ result.price }}.
-      </p>
+      <p>{{ result.user.name }} — saldo insuficiente</p>
     </div>
   {% endif %}
 {% endif %}
+
 {% endblock %}
