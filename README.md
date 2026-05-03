@@ -174,3 +174,10 @@ Após iniciar, acesse: `http://127.0.0.1:8000/`
 **Como** sistema
 **Quero** validar automaticamente se o aluno possui saldo suficiente ao passar na catraca
 **Para** liberar ou bloquear o acesso de forma rápida e sem intervenção manual
+
+---
+
+## Diagramas
+### Diagrama de classes
+<img src="uml/diagrama_de_classes.png" alt="Diagrama de Classes">
+<img src="uml/diagrama_de_atividades.png" alt="Diagrama de Atividades">
